@@ -1,0 +1,68 @@
+﻿@model DawDK.evento
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<aside class="right-side">
+
+    <h3>Certeza que deseja apagar?</h3>
+    <div>
+      
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Titulo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tipo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Local_Evento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Local_Evento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Agenda)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Agenda)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Apagar" class="btn btn-default" /> |
+                @Html.ActionLink("Voltar a Lista", "Index")
+            </div>
+        }
+    </div>
+
+    </aside>

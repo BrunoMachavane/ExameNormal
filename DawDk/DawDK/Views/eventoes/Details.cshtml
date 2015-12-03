@@ -1,0 +1,60 @@
+﻿@model DawDK.evento
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<aside class="right-side">
+
+    <div>
+        
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Titulo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tipo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Local_Evento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Local_Evento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Agenda)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Agenda)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id_evento }) |
+        @Html.ActionLink("Voltar a Lista", "Index")
+    </p>
+    </aside>

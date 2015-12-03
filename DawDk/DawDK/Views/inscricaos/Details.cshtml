@@ -1,0 +1,44 @@
+﻿@model DawDK.inscricao
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<aside class="right-side">
+
+    <div>
+        
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Data_Inscricao)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Data_Inscricao)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.evento1.Titulo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.evento1.Titulo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.participante.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.participante.Nome)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id_inscricao }) |
+        @Html.ActionLink("Voltar a Lista", "Index")
+    </p>
+    </aside>

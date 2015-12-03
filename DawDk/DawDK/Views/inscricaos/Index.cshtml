@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DawDK.inscricao>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<aside class="right-side">
+
+    <p>
+        @Html.ActionLink("Novo", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data_Inscricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.evento1.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.participante.Nome)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_Inscricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.evento1.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.participante.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_inscricao }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.id_inscricao }) |
+                    @Html.ActionLink("Apagar", "Delete", new { id = item.id_inscricao })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    </aside>

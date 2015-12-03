@@ -1,0 +1,84 @@
+﻿@model DawDK.participante
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<aside class="right-side">
+
+    <div>
+ 
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Apelido)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Apelido)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Grau_academico)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Grau_academico)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Empresa)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Empresa)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Data_nascimento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Data_nascimento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sexo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Telefone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id_participantes }) |
+        @Html.ActionLink("voltar a Lista", "Index")
+    </p>
+    </aside>

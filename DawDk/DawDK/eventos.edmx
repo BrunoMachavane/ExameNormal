@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="exameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="eventos">
+          <Key>
+            <PropertyRef Name="Id_evento" />
+          </Key>
+          <Property Name="Id_evento" Type="int" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="255" />
+          <Property Name="Tipo" Type="varchar" MaxLength="255" />
+          <Property Name="Descricao" Type="varchar" MaxLength="255" />
+          <Property Name="Local_Evento" Type="varchar" MaxLength="255" />
+          <Property Name="Agenda" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="inscricao">
+          <Key>
+            <PropertyRef Name="id_inscricao" />
+          </Key>
+          <Property Name="id_inscricao" Type="int" Nullable="false" />
+          <Property Name="Data_Inscricao" Type="date" />
+          <Property Name="Evento" Type="int" />
+          <Property Name="Participantes" Type="int" />
+        </EntityType>
+        <EntityType Name="participantes">
+          <Key>
+            <PropertyRef Name="Id_participantes" />
+          </Key>
+          <Property Name="Id_participantes" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Apelido" Type="varchar" MaxLength="255" />
+          <Property Name="Grau_academico" Type="int" />
+          <Property Name="Empresa" Type="varchar" MaxLength="255" />
+          <Property Name="Data_nascimento" Type="date" />
+          <Property Name="Sexo" Type="char" MaxLength="1" />
+          <Property Name="Telefone" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__inscricao__Event__15502E78">
+          <End Role="eventos" Type="Self.eventos" Multiplicity="0..1" />
+          <End Role="inscricao" Type="Self.inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eventos">
+              <PropertyRef Name="Id_evento" />
+            </Principal>
+            <Dependent Role="inscricao">
+              <PropertyRef Name="Evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__inscricao__Parti__164452B1">
+          <End Role="participantes" Type="Self.participantes" Multiplicity="0..1" />
+          <End Role="inscricao" Type="Self.inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participantes">
+              <PropertyRef Name="Id_participantes" />
+            </Principal>
+            <Dependent Role="inscricao">
+              <PropertyRef Name="Participantes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="exameModelStoreContainer">
+          <EntitySet Name="eventos" EntityType="Self.eventos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inscricao" EntityType="Self.inscricao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="participantes" EntityType="Self.participantes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__inscricao__Event__15502E78" Association="Self.FK__inscricao__Event__15502E78">
+            <End Role="eventos" EntitySet="eventos" />
+            <End Role="inscricao" EntitySet="inscricao" />
+          </AssociationSet>
+          <AssociationSet Name="FK__inscricao__Parti__164452B1" Association="Self.FK__inscricao__Parti__164452B1">
+            <End Role="participantes" EntitySet="participantes" />
+            <End Role="inscricao" EntitySet="inscricao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="exameModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="evento">
+          <Key>
+            <PropertyRef Name="Id_evento" />
+          </Key>
+          <Property Name="Id_evento" Type="Int32" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Local_Evento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Agenda" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inscricaos" Relationship="Self.FK__inscricao__Event__15502E78" FromRole="eventos" ToRole="inscricao" />
+        </EntityType>
+        <EntityType Name="inscricao">
+          <Key>
+            <PropertyRef Name="id_inscricao" />
+          </Key>
+          <Property Name="id_inscricao" Type="Int32" Nullable="false" />
+          <Property Name="Data_Inscricao" Type="DateTime" Precision="0" />
+          <Property Name="Evento" Type="Int32" />
+          <Property Name="Participantes" Type="Int32" />
+          <NavigationProperty Name="evento1" Relationship="Self.FK__inscricao__Event__15502E78" FromRole="inscricao" ToRole="eventos" />
+          <NavigationProperty Name="participante" Relationship="Self.FK__inscricao__Parti__164452B1" FromRole="inscricao" ToRole="participantes" />
+        </EntityType>
+        <EntityType Name="participante">
+          <Key>
+            <PropertyRef Name="Id_participantes" />
+          </Key>
+          <Property Name="Id_participantes" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Apelido" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Grau_academico" Type="Int32" />
+          <Property Name="Empresa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Data_nascimento" Type="DateTime" Precision="0" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Telefone" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inscricaos" Relationship="Self.FK__inscricao__Parti__164452B1" FromRole="participantes" ToRole="inscricao" />
+        </EntityType>
+        <Association Name="FK__inscricao__Event__15502E78">
+          <End Role="eventos" Type="Self.evento" Multiplicity="0..1" />
+          <End Role="inscricao" Type="Self.inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="eventos">
+              <PropertyRef Name="Id_evento" />
+            </Principal>
+            <Dependent Role="inscricao">
+              <PropertyRef Name="Evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__inscricao__Parti__164452B1">
+          <End Role="participantes" Type="Self.participante" Multiplicity="0..1" />
+          <End Role="inscricao" Type="Self.inscricao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participantes">
+              <PropertyRef Name="Id_participantes" />
+            </Principal>
+            <Dependent Role="inscricao">
+              <PropertyRef Name="Participantes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="exameEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="eventos" EntityType="Self.evento" />
+          <EntitySet Name="inscricaos" EntityType="Self.inscricao" />
+          <EntitySet Name="participantes" EntityType="Self.participante" />
+          <AssociationSet Name="FK__inscricao__Event__15502E78" Association="Self.FK__inscricao__Event__15502E78">
+            <End Role="eventos" EntitySet="eventos" />
+            <End Role="inscricao" EntitySet="inscricaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__inscricao__Parti__164452B1" Association="Self.FK__inscricao__Parti__164452B1">
+            <End Role="participantes" EntitySet="participantes" />
+            <End Role="inscricao" EntitySet="inscricaos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="exameModelStoreContainer" CdmEntityContainer="exameEntities">
+          <EntitySetMapping Name="eventos">
+            <EntityTypeMapping TypeName="exameModel.evento">
+              <MappingFragment StoreEntitySet="eventos">
+                <ScalarProperty Name="Id_evento" ColumnName="Id_evento" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Local_Evento" ColumnName="Local_Evento" />
+                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inscricaos">
+            <EntityTypeMapping TypeName="exameModel.inscricao">
+              <MappingFragment StoreEntitySet="inscricao">
+                <ScalarProperty Name="id_inscricao" ColumnName="id_inscricao" />
+                <ScalarProperty Name="Data_Inscricao" ColumnName="Data_Inscricao" />
+                <ScalarProperty Name="Evento" ColumnName="Evento" />
+                <ScalarProperty Name="Participantes" ColumnName="Participantes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="participantes">
+            <EntityTypeMapping TypeName="exameModel.participante">
+              <MappingFragment StoreEntitySet="participantes">
+                <ScalarProperty Name="Id_participantes" ColumnName="Id_participantes" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Apelido" ColumnName="Apelido" />
+                <ScalarProperty Name="Grau_academico" ColumnName="Grau_academico" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Data_nascimento" ColumnName="Data_nascimento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
